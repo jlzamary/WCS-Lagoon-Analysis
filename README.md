@@ -14,15 +14,30 @@ As of September 2025, the project is still producing interactive mapping tools a
 
 ---
 
-## Sample Maps of Algal Bloom Analysis and Bloom Development 
+## Study Area
+![Map of Arctic Coastal Lagoons](Maps/study_area_map.png)
 
-![Map of Arctic Coastal Lagoons](Maps/Krusenstern_Bloom_Map.png)
----
-![Map of Arctic Coastal Lagoons](Maps/Krusenstern_Bloom_Development.png)
+<sub>*Map created by Isabella Buckley William & Mary '25*</sub>
+
+<details>
+  <summary> 
+    <b>Sample Maps of Algal Bloom Analysis and Bloom Development</b>
+    <div><sub> Click the arrow to view more </sub></div>
+  </summary>
+
+  ![Map of Arctic Coastal Lagoons](Maps/Krusenstern_Bloom_Map.png)
+
+  ---
+
+  ![Map of Arctic Coastal Lagoons](Maps/Krusenstern_Bloom_Development.png)
+
+</details>
 
 ---
 
 ## Project Links
 
-- [Expirence Builder Site](https://experience.arcgis.com/experience/8ed468e285634b5f974ba3df4b8ee857/)  
-- [Arctic Beringia Fish Ecology Website](https://leucichthys.org/home/chukchi-sea-coastal-lagoon-monitoring/)  
+Visit the following links to learn more about the project and visualize some of the current data.
+
+**Visualize the Data:** [Expirence Builder Site](https://experience.arcgis.com/experience/8ed468e285634b5f974ba3df4b8ee857/) 
+**Learn More:** [Arctic Beringia Fish Ecology Website](https://leucichthys.org/home/chukchi-sea-coastal-lagoon-monitoring/) 
