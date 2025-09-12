@@ -12,7 +12,12 @@ Satellite imagery is processed by a Python workflow that makes use of the Google
 
 As of September 2025, the project is still producing interactive mapping tools and satellite-derived datasets that are vital resources for tracking the health of ecosystems and guiding conservation plans in Arctic lagoons. Fore more visit the Expirenc Builder, or WCS site.
 
+---
+
+## Sample Maps of Algal Bloom Analysis and Bloom Development 
+
 ![Map of Arctic Coastal Lagoons](Maps/Krusenstern_Bloom_Map.png)
+![Map of Arctic Coastal Lagoons](Maps/Krusenstern_Bloom_Development.png)
 
 ---
 
