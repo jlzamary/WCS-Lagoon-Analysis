@@ -10,3 +10,9 @@ Our goal is to produce time-series datasets and visualizations that facilitate e
 ---
 
 ## Repository Structure
+WCS-Lagoon-Analysis/
+│── data/
+│ └── LagoonsPolygon (1).geojson # Lagoon boundaries shapefile
+│── notebooks/
+│ └── F25_WCS_Code.ipynb # Main analysis Jupyter Notebook
+│── README.md
