@@ -4,7 +4,7 @@ Geospatial analysis of Arctic coastal lagoons in Alaska using Python and Google 
 ---
 
 ## Project Overview
-Climate change is reshaping Alaska’s fragile ecosystems, with warming weather driving seasonal shifts that threaten coastal habitats. The Wildlife Conservation Society (WCS) leads the Chukchi Sea Coastal Lagoon Monitoring project, providing insights to support researchers, conservationists, and local communities.
+Climate change is reshaping Alaska’s fragile ecosystems, with warming weather driving seasonal shifts that threaten coastal habitats. William & Mary's Institute for Integrative Conservation (IIC) has partnered with the The Wildlife Conservation Society (WCS), which leads the Chukchi Sea Coastal Lagoon Monitoring project, to help provide insights to support researchers, conservationists, and local communities.
 
 This project examines lagoons in the Chukchi and Beaufort Seas to determine ice coverage, lagoon connectivity, and algal growth. The code currently uploaded to this Github repository focuses mainly on algae bloom monitoring and analysis. Using the collected data, an interactive ArcGIS Experience Builder application was created to assist conservation specialists and fishermen in monitoring habitat changes and spotting long-term patterns.
 
@@ -17,6 +17,7 @@ As of September 2025, the project is still producing interactive mapping tools a
 ## Sample Maps of Algal Bloom Analysis and Bloom Development 
 
 ![Map of Arctic Coastal Lagoons](Maps/Krusenstern_Bloom_Map.png)
+---
 ![Map of Arctic Coastal Lagoons](Maps/Krusenstern_Bloom_Development.png)
 
 ---
