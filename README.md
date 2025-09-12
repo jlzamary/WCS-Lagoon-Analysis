@@ -40,4 +40,5 @@ As of September 2025, the project is still producing interactive mapping tools a
 Visit the following links to learn more about the project and visualize some of the current data.
 
 **Visualize the Data:** [Expirence Builder Site](https://experience.arcgis.com/experience/8ed468e285634b5f974ba3df4b8ee857/) 
+
 **Learn More:** [Arctic Beringia Fish Ecology Website](https://leucichthys.org/home/chukchi-sea-coastal-lagoon-monitoring/) 
