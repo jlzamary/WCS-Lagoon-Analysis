@@ -1,4 +1,4 @@
-# WCS-Lagoon-Analysis
+# Arctic Fisheries and Coastal Lagoons 
 Geospatial analysis of Arctic coastal lagoons in Alaska using Python and Google Earth Engine (GEE) to monitor ecological changes such as algal blooms, ice coverage, and seasonal variation.
 
 ---
