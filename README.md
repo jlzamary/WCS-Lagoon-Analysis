@@ -48,14 +48,14 @@ As of September 2025, the project is still producing interactive mapping tools a
       <br />
       William & Mary '27
       <br />
-      <a href="https://www.linkedin.com/in/jack-zamary">
+      <a href="https://www.linkedin.com/in/jack-liam-zamary/">
         <img src="https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin" alt="LinkedIn"/>
       </a>
     </td>
     <td align="center" width="33%">
       <img src="readme_files/kevin_img.png" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Kevin Susnjar"/>
       <br />
-      <b>Kevin Susnjar</b>
+      <b>Kevin Fraley</b>
       <br />
       Wildlife Conservation Society
       <br />
