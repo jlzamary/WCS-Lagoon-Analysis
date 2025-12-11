@@ -31,6 +31,14 @@ As of November 2025, the project is still producing interactive mapping tools an
       William & Mary '25
       <br />
     </td>
+      <td align="center" width="33%">
+      <img src="readme_files/aayla_img.jpg" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Isabella Buckley"/>
+      <br />
+      <b>Aayla Kastning</b>
+      <br />
+      William & Mary '26
+      <br />
+    </td>
     <td align="center" width="33%">
       <img src="readme_files/jack_img.jpg" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Jack Zamary"/>
       <br />
