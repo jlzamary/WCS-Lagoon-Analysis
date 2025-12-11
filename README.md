@@ -23,7 +23,7 @@ As of November 2025, the project is still producing interactive mapping tools an
 
 <table>
   <tr>
-    <td align="center" width="33%">
+    <td align="center" width="25%">
       <img src="readme_files/isa_img.jpg" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Isabella Buckley"/>
       <br />
       <b>Isabella Buckley</b>
@@ -31,15 +31,15 @@ As of November 2025, the project is still producing interactive mapping tools an
       William & Mary '25
       <br />
     </td>
-      <td align="center" width="33%">
-      <img src="readme_files/aayla_img.jpg" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Isabella Buckley"/>
+    <td align="center" width="25%">
+      <img src="readme_files/aayla_img.jpg" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Aayla Kastning"/>
       <br />
       <b>Aayla Kastning</b>
       <br />
       William & Mary '26
       <br />
     </td>
-    <td align="center" width="33%">
+    <td align="center" width="25%">
       <img src="readme_files/jack_img.jpg" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Jack Zamary"/>
       <br />
       <b>Jack Zamary</b>
@@ -47,8 +47,8 @@ As of November 2025, the project is still producing interactive mapping tools an
       William & Mary '27
       <br />
     </td>
-    <td align="center" width="33%">
-      <img src="readme_files/kevin_img.png" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Kevin Susnjar"/>
+    <td align="center" width="25%">
+      <img src="readme_files/kevin_img.png" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Kevin Fraley"/>
       <br />
       <b>Kevin Fraley</b>
       <br />
