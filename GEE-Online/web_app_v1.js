@@ -1,221 +1,250 @@
-// Usefull UI tips: https://developers.google.com/earth-engine/guides/ui_panels
-// GeoJSON Conversion to .shp file using https://mygeodata.cloud/conversion#result
+/**
+ * This app follows the template below created by Google Earth 
+ * https://medium.com/google-earth/tips-tricks-for-building-earth-engine-apps-f12b46786ae7
+ * 
+ */
+
+/*******************************************************************************
+ * Model *
+ ******************************************************************************/
+
+var m = {};
 
 // Import Krusenstern Polygon
-var krusensternLagoon = ee.FeatureCollection("projects/ee-jlzamary/assets/krusenstern_pkg");
+m.krusensternLagoon = ee.FeatureCollection("projects/ee-jlzamary/assets/krusenstern_pkg");
 
 // Sentinel Collection 
-var Sentinel2 = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
+m.Sentinel2 = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 
-// Cloud Mask 
-function maskS2clouds(image) {
+// Cloud Mask
+m.maskS2clouds = function(image) {
   var qa = image.select('QA60');
-  // Bits 10 and 11 are clouds and cirrus, respectively.
   var cloudBitMask = 1 << 10;
   var cirrusBitMask = 1 << 11;
-  // Both flags should be set to zero, indicating clear conditions.
   var mask = qa.bitwiseAnd(cloudBitMask).eq(0)
       .and(qa.bitwiseAnd(cirrusBitMask).eq(0));
   return image.updateMask(mask).divide(10000);
-}
+};
 
-// Create NDCI Index
-var addNDCI = function(image) {
+// NDCI Index 
+m.addNDCI = function(image) {
   var ndci = image.normalizedDifference(['B5', 'B4']).rename('NDCI');
   return image.addBands(ndci);
 };
 
-// Messing around with headers to document 
+// Store current images for layer toggling
+m.currentTrueColorImage = null;
+m.currentNDCIImage = null;
+m.currentGrayScaleImage = null;
 
-//  ################################### 
-//  #                                 #  
-//  #           UI COMPONENTS         #    
-//  #                                 #   
-//  ################################### 
 
-// Create main panel (left side)
-var mainPanel = ui.Panel({
-  style: {
-    width: '400px',
-    padding: '8px',
-    position: 'top-left'
-  }
-});
+/*******************************************************************************
+ * Styling *
+ ******************************************************************************/
+
+// Define a JSON object for defining CSS-like class style properties.
+var s = {};
+
+s.panelLeft = {
+  width: '400px',
+  padding: '8px',
+  position: 'top-left'
+  // height: '100%'
+};
+
+s.titleLabel = {
+  fontSize: '22px',
+  fontWeight: 'bold',
+  margin: '0px 0px 10px 0px'
+};
+
+s.selectorStyle = {
+  stretch: 'horizontal',
+  margin: '0px 0px 10px 0px'
+};
+
+s.layerPanel = {
+  border: '2px solid #000000',
+  padding: '8px',
+  margin: '0px 0px 8px 0px'
+};
+
+s.layerPanelName = {
+  fontWeight: 'bold',
+  margin: '0px 0px 5px 0px'
+};
+
+s.layerPanelDescription = {
+  color: 'grey',
+  fontSize: '11px'
+};
+
+s.infoPanel = {
+  border: '2px solid #000000',
+  padding: '8px',
+  backgroundColor: '#f8f8f8'
+};
+
+s.dateLabel = {
+  margin: '5px 0px 0px 0px'
+};
+
+s.textboxStyle = {
+  stretch: 'horizontal'
+};
+
+s.buttonStyle = {
+  stretch: 'horizontal',
+  margin: '8px 0px 0px 0px'
+};
+
+s.checkboxStyle = {
+  margin: '2px 0px'
+};
+
+s.imageCountStyle = {
+  fontSize: '11px',
+  color: 'gray',
+  margin: '5px 0px 0px 0px'
+};
+
+
+/*******************************************************************************
+ * Components *
+ ******************************************************************************/
+
+// Define a JSON object for storing UI components.
+var c = {};
+
+// Main panel (left side)
+c.panelLeft = ui.Panel({style: s.panelLeft});
 
 // Title
-var title = ui.Label({
+c.title = ui.Label({
   value: 'Krusenstern Lagoon Analysis',
-  style: {
-    fontWeight: 'bold',
-    fontSize: '18px',
-    margin: '0px 0px 10px 0px'
-  }
+  style: s.titleLabel
 });
 
 // Analysis type selector
-var analysisSelector = ui.Select({
+c.analysisSelector = ui.Select({
   items: ['NDCI Analysis', 'Ice Coverage'],
   value: 'NDCI Analysis',
   placeholder: 'Choose analysis type',
-  style: {stretch: 'horizontal', margin: '0px 0px 10px 0px'},
-  onChange: function(value) {
-    if (value === 'NDCI Analysis') {
-      showNDCIPanel();
-    } else if (value === 'Ice Coverage') {
-      showIcePanel();
-    }
-  }
+  style: s.selectorStyle
 });
 
 // ========== NDCI PANEL ==========
 
-var ndciPanel = ui.Panel({
-  style: {
-    border: '2px solid #000000',
-    padding: '8px',
-    margin: '0px 0px 8px 0px'
-  }
-});
+c.ndciPanel = ui.Panel({style: s.layerPanel});
 
-// Date Range Section
-var dateRangeLabel = ui.Label({
+c.dateRangeLabel = ui.Label({
   value: 'Date Range',
-  style: {fontWeight: 'bold', margin: '0px 0px 5px 0px'}
+  style: s.layerPanelName
 });
 
-// Start date input
-var startDateLabel = ui.Label('Start Date (YYYY-MM-DD):');
-var startDateBox = ui.Textbox({
+c.startDateLabel = ui.Label('Start Date (YYYY-MM-DD):');
+c.startDateBox = ui.Textbox({
   placeholder: 'YYYY-MM-DD',
   value: '2024-06-20',
-  style: {stretch: 'horizontal'}
+  style: s.textboxStyle
 });
 
-// End date input
-var endDateLabel = ui.Label('End Date (YYYY-MM-DD):', {margin: '5px 0px 0px 0px'});
-var endDateBox = ui.Textbox({
+c.endDateLabel = ui.Label('End Date (YYYY-MM-DD):', s.dateLabel);
+c.endDateBox = ui.Textbox({
   placeholder: 'YYYY-MM-DD',
   value: '2024-06-22',
-  style: {stretch: 'horizontal'}
+  style: s.textboxStyle
 });
 
-// Update button
-var updateButton = ui.Button({
+c.updateButton = ui.Button({
   label: 'Update Map',
-  style: {stretch: 'horizontal', margin: '8px 0px 0px 0px'},
-  onClick: function() {
-    var start = startDateBox.getValue();
-    var end = endDateBox.getValue();
-    updateNDCI(start, end);
-  }
+  style: s.buttonStyle
 });
 
-// Image count label
-var imageCountLabel = ui.Label({
+c.imageCountLabel = ui.Label({
   value: 'Click "Update Map" to load imagery',
-  style: {fontSize: '11px', color: 'gray', margin: '5px 0px 0px 0px'}
+  style: s.imageCountStyle
 });
 
 // Add date components to NDCI panel
-ndciPanel.add(dateRangeLabel);
-ndciPanel.add(startDateLabel);
-ndciPanel.add(startDateBox);
-ndciPanel.add(endDateLabel);
-ndciPanel.add(endDateBox);
-ndciPanel.add(updateButton);
-ndciPanel.add(imageCountLabel);
+c.ndciPanel.add(c.dateRangeLabel);
+c.ndciPanel.add(c.startDateLabel);
+c.ndciPanel.add(c.startDateBox);
+c.ndciPanel.add(c.endDateLabel);
+c.ndciPanel.add(c.endDateBox);
+c.ndciPanel.add(c.updateButton);
+c.ndciPanel.add(c.imageCountLabel);
 
 // ========== LAYERS SECTION ==========
 
-var layersPanel = ui.Panel({
-  style: {
-    border: '2px solid #000000',
-    padding: '8px',
-    margin: '0px 0px 8px 0px'
-  }
-});
+c.layersPanel = ui.Panel({style: s.layerPanel});
 
-var layersTitle = ui.Label({
+c.layersTitle = ui.Label({
   value: 'Layers',
-  style: {fontWeight: 'bold', margin: '0px 0px 5px 0px'}
+  style: s.layerPanelName
 });
 
-// Layer visibility checkboxes
-var showTrueColorCheck = ui.Checkbox({
+c.showTrueColorCheck = ui.Checkbox({
   label: 'True Color',
-  value: true,
-  style: {margin: '2px 0px'}
+  value: false,
+  style: s.checkboxStyle
 });
 
-var showNDCICheck = ui.Checkbox({
+c.showNDCICheck = ui.Checkbox({
   label: 'NDCI',
   value: true,
-  style: {margin: '2px 0px'}
+  style: s.checkboxStyle
 });
 
-var showGrayScaleCheck = ui.Checkbox({
+c.showGrayScaleCheck = ui.Checkbox({
   label: 'Gray Scale',
   value: false,
-  style: {margin: '2px 0px'}
+  style: s.checkboxStyle
 });
 
-layersPanel.add(layersTitle);
-layersPanel.add(showTrueColorCheck);
-layersPanel.add(showNDCICheck);
-layersPanel.add(showGrayScaleCheck);
+c.layersPanel.add(c.layersTitle);
+c.layersPanel.add(c.showTrueColorCheck);
+c.layersPanel.add(c.showNDCICheck);
+c.layersPanel.add(c.showGrayScaleCheck);
 
 // ========== ICE COVERAGE PANEL ==========
 
-var icePanel = ui.Panel({
-  style: {
-    border: '1px solid #ddd',
-    padding: '8px',
-    margin: '0px 0px 8px 0px'
-  }
-});
+c.icePanel = ui.Panel({style: s.layerPanel});
 
-var iceTitle = ui.Label({
+c.iceTitle = ui.Label({
   value: 'Ice Coverage Analysis',
-  style: {fontWeight: 'bold', margin: '0px 0px 5px 0px'}
+  style: s.layerPanelName
 });
 
-var icePlaceholder = ui.Label({
+c.icePlaceholder = ui.Label({
   value: 'Ice coverage functionality coming soon...',
-  style: {color: 'gray', fontStyle: 'italic'}
+  style: s.layerPanelDescription
 });
 
-icePanel.add(iceTitle);
-icePanel.add(icePlaceholder);
+c.icePanel.add(c.iceTitle);
+c.icePanel.add(c.icePlaceholder);
 
-// ========== INFO PANEL (bottom) ==========
+// ========== INFO PANEL ==========
 
-var infoPanel = ui.Panel({
-  style: {
-    border: '2px solid #000000',
-    padding: '8px',
-    backgroundColor: '#f8f8f8'
-  }
-});
+c.infoPanel = ui.Panel({style: s.infoPanel});
 
-var infoTitle = ui.Label({
+c.infoTitle = ui.Label({
   value: 'About',
-  style: {fontWeight: 'bold', margin: '0px 0px 5px 0px'}
+  style: s.layerPanelName
 });
 
-var infoText = ui.Label({
+c.infoText = ui.Label({
   value: 'Remote sensing web-app to monitor ecological and temporal changes in coastal Chukchi Sea lagoons.',
   style: {fontSize: '11px', whiteSpace: 'pre-wrap', backgroundColor: '#f8f8f8'}
 });
 
-infoPanel.add(infoTitle);
-infoPanel.add(infoText);
+c.infoPanel.add(c.infoTitle);
+c.infoPanel.add(c.infoText);
 
-// ========== UPDATE FUNCTIONS ==========
 
-// Store current images for layer toggling
-var currentTrueColorImage;
-var currentNDCIImage;
-var currentGrayScaleImage;
+/*******************************************************************************
+ * Behaviors *
+ ******************************************************************************/
 
 // Function to update NDCI based on selected dates
 function updateNDCI(startDateStr, endDateStr) {
@@ -224,149 +253,143 @@ function updateNDCI(startDateStr, endDateStr) {
   var end = ee.Date(endDateStr);
   
   // Count available images
-  var imageCount = Sentinel2
-    .filterBounds(krusensternLagoon)
+  var imageCount = m.Sentinel2
+    .filterBounds(m.krusensternLagoon)
     .filterDate(start, end)
     .size();
   
   imageCount.evaluate(function(count) {
-    imageCountLabel.setValue('Available images: ' + count);
+    c.imageCountLabel.setValue('Available images: ' + count);
   });
   
   // Clear previous layers
   Map.layers().reset();
   
   // Add lagoon boundary
-  Map.addLayer(krusensternLagoon, {color: "9CAB84"}, 'Krusenstern Lagoon', true, 0.5);
+  Map.addLayer(m.krusensternLagoon, {color: "9CAB84"}, 'Krusenstern Lagoon', true, 0.5);
   
   // Get imagery for selected date range
-  currentTrueColorImage = Sentinel2
-    .filterBounds(krusensternLagoon)
+  m.currentTrueColorImage = m.Sentinel2
+    .filterBounds(m.krusensternLagoon)
     .filterDate(start, end)
-    .map(maskS2clouds)
+    .map(m.maskS2clouds)
     .median() 
-    .clip(krusensternLagoon);
+    .clip(m.krusensternLagoon);
   
-  currentNDCIImage = Sentinel2
-    .filterBounds(krusensternLagoon)
+  m.currentNDCIImage = m.Sentinel2
+    .filterBounds(m.krusensternLagoon)
     .filterDate(start, end)
-    .map(maskS2clouds)
-    .map(addNDCI)
+    .map(m.maskS2clouds)
+    .map(m.addNDCI)
     .select('NDCI')
     .median()
-    .clip(krusensternLagoon);
+    .clip(m.krusensternLagoon);
   
-  currentGrayScaleImage = currentNDCIImage;
+  m.currentGrayScaleImage = m.currentNDCIImage;
   
   // Add layers based on checkbox state
-  if (showTrueColorCheck.getValue()) {
-    Map.addLayer(currentTrueColorImage, 
+  if (c.showTrueColorCheck.getValue()) {
+    Map.addLayer(m.currentTrueColorImage, 
                  {bands: ['B4', 'B3', 'B2'], min: 0, max: 0.3}, 
                  'True Color');
   }
   
-  if (showNDCICheck.getValue()) {
-    Map.addLayer(currentNDCIImage, 
+  if (c.showNDCICheck.getValue()) {
+    Map.addLayer(m.currentNDCIImage, 
                  {min: -0.3, max: 0.4, palette: ['blue', 'green', 'red']}, 
                  'NDCI');
   }
   
-  if (showGrayScaleCheck.getValue()) {
-    Map.addLayer(currentGrayScaleImage, 
+  if (c.showGrayScaleCheck.getValue()) {
+    Map.addLayer(m.currentGrayScaleImage, 
                  {min: -0.3, max: 0.4, palette: ['white', 'black']}, 
                  'Gray Scale');
   }
   
   // Center map on lagoon
-  Map.centerObject(krusensternLagoon, 10);
+  Map.centerObject(m.krusensternLagoon, 11);
 }
 
-// Add callbacks for checkboxes to toggle layer visibility
-showTrueColorCheck.onChange(function(checked) {
-  // Find and toggle True Color layer
+// Function to toggle layer visibility
+function toggleLayer(layerName, checked, image, vizParams) {
   var layers = Map.layers();
   for (var i = 0; i < layers.length(); i++) {
     var layer = layers.get(i);
-    if (layer.getName() === 'True Color') {
+    if (layer.getName() === layerName) {
       layer.setShown(checked);
       return;
     }
   }
   // If layer doesn't exist and checkbox is checked, add it
-  if (checked && currentTrueColorImage) {
-    Map.layers().add(ui.Map.Layer(currentTrueColorImage, 
-                     {bands: ['B4', 'B3', 'B2'], min: 0, max: 0.3}, 
-                     'True Color'));
+  if (checked && image) {
+    Map.layers().add(ui.Map.Layer(image, vizParams, layerName));
   }
-});
+}
 
-showNDCICheck.onChange(function(checked) {
-  var layers = Map.layers();
-  for (var i = 0; i < layers.length(); i++) {
-    var layer = layers.get(i);
-    if (layer.getName() === 'NDCI') {
-      layer.setShown(checked);
-      return;
-    }
-  }
-  if (checked && currentNDCIImage) {
-    Map.layers().add(ui.Map.Layer(currentNDCIImage, 
-                     {min: -0.3, max: 0.4, palette: ['blue', 'green', 'red']}, 
-                     'NDCI'));
-  }
-});
-
-showGrayScaleCheck.onChange(function(checked) {
-  var layers = Map.layers();
-  for (var i = 0; i < layers.length(); i++) {
-    var layer = layers.get(i);
-    if (layer.getName() === 'Gray Scale') {
-      layer.setShown(checked);
-      return;
-    }
-  }
-  if (checked && currentGrayScaleImage) {
-    Map.layers().add(ui.Map.Layer(currentGrayScaleImage, 
-                     {min: -0.3, max: 0.4, palette: ['white', 'black']}, 
-                     'Gray Scale'));
-  }
-});
-
-// ========== PANEL SWITCHING ==========
-
+// Panel switching functions
 function showNDCIPanel() {
-  mainPanel.clear();
-  mainPanel.add(title);
-  mainPanel.add(analysisSelector);
-  mainPanel.add(ndciPanel);
-  mainPanel.add(layersPanel);
-  mainPanel.add(infoPanel);
+  c.panelLeft.clear();
+  c.panelLeft.add(c.title);
+  c.panelLeft.add(c.analysisSelector);
+  c.panelLeft.add(c.ndciPanel);
+  c.panelLeft.add(c.layersPanel);
+  c.panelLeft.add(c.infoPanel);
   
   // Load initial data if not already loaded
-  if (!currentNDCIImage) {
+  if (!m.currentNDCIImage) {
     updateNDCI('2024-06-20', '2024-06-22');
   }
 }
 
 function showIcePanel() {
-  mainPanel.clear();
-  mainPanel.add(title);
-  mainPanel.add(analysisSelector);
-  mainPanel.add(icePanel);
-  mainPanel.add(infoPanel);
+  c.panelLeft.clear();
+  c.panelLeft.add(c.title);
+  c.panelLeft.add(c.analysisSelector);
+  c.panelLeft.add(c.icePanel);
+  c.panelLeft.add(c.infoPanel);
   
   // Clear map layers when switching to ice panel
   Map.layers().reset();
-  Map.addLayer(krusensternLagoon, {color: "9CAB84"}, 'Krusenstern Lagoon');
+  Map.addLayer(m.krusensternLagoon, {color: "9CAB84"}, 'Krusenstern Lagoon');
 }
 
-// ========== INITIALIZE APP ==========
+// Assign callbacks - Update button
+c.updateButton.onClick(function() {
+  var start = c.startDateBox.getValue();
+  var end = c.endDateBox.getValue();
+  updateNDCI(start, end);
+});
 
-// Add main panel to map
-Map.add(mainPanel);
+// Assign callbacks - Analysis selector
+c.analysisSelector.onChange(function(value) {
+  if (value === 'NDCI Analysis') {
+    showNDCIPanel();
+  } else if (value === 'Ice Coverage') {
+    showIcePanel();
+  }
+});
 
-// Initialize with NDCI panel
+// Assign callbacks - Layer checkboxes
+c.showTrueColorCheck.onChange(function(checked) {
+  toggleLayer('True Color', checked, m.currentTrueColorImage, 
+              {bands: ['B4', 'B3', 'B2'], min: 0, max: 0.3});
+});
+
+c.showNDCICheck.onChange(function(checked) {
+  toggleLayer('NDCI', checked, m.currentNDCIImage,
+              {min: -0.3, max: 0.4, palette: ['blue', 'green', 'red']});
+});
+
+c.showGrayScaleCheck.onChange(function(checked) {
+  toggleLayer('Gray Scale', checked, m.currentGrayScaleImage,
+              {min: -0.3, max: 0.4, palette: ['white', 'black']});
+});
+
+
+/*******************************************************************************
+ * Initialize *
+ ******************************************************************************/
+ 
+Map.add(c.panelLeft);
 showNDCIPanel();
-
-// Set initial map view
-Map.centerObject(krusensternLagoon, 11);
+Map.centerObject(m.krusensternLagoon, 11);
