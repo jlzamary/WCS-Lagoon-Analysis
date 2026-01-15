@@ -1,14 +1,13 @@
 // Basic NDCI visualization script for GEE Online 
 
 
-//  ###################################################################  //
-//                                                                       //   
-//   All GeoJson files must be converted and zipped into .shp files      //
-//   to run the following. Additionally, it's important that the         //
-//   Krusenstern geojson file (Data/lagoon_polygons/krusenstern.geojson) //
-//   is used. ** It does need to be zipped.                              // 
-//                                                                       //
-//  ###################################################################  //
+/**
+ * 
+ *    All GeoJson files must be converted and zipped into .shp files
+ *    to run the following. Additionally, it's important that the
+ *    Krusenstern geojson file (Data/lagoon_polygons/krusenstern.geojson)
+ *    is used. ** It does need to be zipped.
+ **/
 
 
 // GeoJSON Conversion to .shp file using https://mygeodata.cloud/conversion#result

@@ -48,7 +48,7 @@ var s = {};
 s.panelLeft = {
   width: '400px',
   padding: '8px',
-  position: 'top-left'
+  position: 'top-left',
   // height: '100%'
 };
 
@@ -117,7 +117,23 @@ s.imageCountStyle = {
 var c = {};
 
 // Main panel (left side)
-c.panelLeft = ui.Panel({style: s.panelLeft});
+c.buildUI = function() {
+  var panelLeft = ui.Panel(
+    [
+      c.title,
+      c.analysisSelector,
+      c.icePlaceholder,
+      c.usagePanel,
+      c.ndciPanel,
+      c.layersPanel,
+      c.soonPanel,
+      c.infoPanel
+    ],
+    ui.Panel.Layout.flow('vertical'),  // This line is key
+    s.panelLeft
+  );
+  ui.root.widgets().insert(0, panelLeft);
+};
 
 // Title
 c.title = ui.Label({
@@ -132,6 +148,34 @@ c.analysisSelector = ui.Select({
   placeholder: 'Choose analysis type',
   style: s.selectorStyle
 });
+
+// ========== USAGE PANEL ==========
+
+c.usagePanel = ui.Panel({style: s.layerPanel});
+
+c.usageTitle = ui.Label({
+  value: 'Usage and Setup',
+  style: s.layerPanelName
+});
+
+c.usageText = ui.Label({
+  value: '1. Enter dates in YYYY-MM-DD format (e.g., 2024-06-21)\n\n' +
+         '2. Click "Update Map" to load Sentinel-2 imagery\n\n' +
+         '3. Toggle layers on/off to compare True Color, NDCI, and Gray Scale views\n\n' +
+         'Note: If multiple images exist for the selected date, median values are used to reduce cloud interference and noise.',
+  style: {fontSize: '11px', whiteSpace: 'pre-wrap'}
+});
+
+/**
+c.usageText = ui.Label({
+  value: 'When selecting a date rage, if more than one images are present a median value will be taken.',
+  style: {fontSize: '11px', whiteSpace: 'pre-wrap', backgroundColor: '#f8f8f8'}
+});
+*/ 
+
+c.usagePanel.add(c.usageTitle);
+c.usagePanel.add(c.usageText);
+
 
 // ========== NDCI PANEL ==========
 
@@ -217,12 +261,30 @@ c.iceTitle = ui.Label({
 });
 
 c.icePlaceholder = ui.Label({
-  value: 'Ice coverage functionality coming soon...',
+  value: ' ',
   style: s.layerPanelDescription
 });
 
 c.icePanel.add(c.iceTitle);
 c.icePanel.add(c.icePlaceholder);
+
+
+// ========== COMING SOON ==========
+
+c.soonPanel = ui.Panel({style: s.layerPanel});
+
+c.soonTitle = ui.Label({
+  value: 'Ice Coverage Analysis',
+  style: s.layerPanelName
+});
+
+c.soonText = ui.Label({
+  value: 'Ice coverage functionality coming soon...',
+  style: s.layerPanelDescription
+});
+
+c.soonPanel.add(c.soonTitle);
+c.soonPanel.add(c.soonText);
 
 // ========== INFO PANEL ==========
 
@@ -328,28 +390,29 @@ function toggleLayer(layerName, checked, image, vizParams) {
 
 // Panel switching functions
 function showNDCIPanel() {
-  c.panelLeft.clear();
-  c.panelLeft.add(c.title);
-  c.panelLeft.add(c.analysisSelector);
-  c.panelLeft.add(c.ndciPanel);
-  c.panelLeft.add(c.layersPanel);
-  c.panelLeft.add(c.infoPanel);
+  c.ndciPanel.style().set('shown', true);
+  c.layersPanel.style().set('shown', true);
+  c.usagePanel.style().set('shown', true);
+  c.icePlaceholder.style().set('shown', false);
+  c.icePanel.style().set('shown', false);
+  c.soonPanel.style().set('shown', false);
   
   // Load initial data if not already loaded
   if (!m.currentNDCIImage) {
-    updateNDCI('2024-06-20', '2024-06-22');
+    updateNDCI('2024-06-20', '2024-06-22');  // Pass both start and end dates
   }
 }
 
 function showIcePanel() {
-  c.panelLeft.clear();
-  c.panelLeft.add(c.title);
-  c.panelLeft.add(c.analysisSelector);
-  c.panelLeft.add(c.icePanel);
-  c.panelLeft.add(c.infoPanel);
+  c.ndciPanel.style().set('shown', false);
+  c.layersPanel.style().set('shown', false);
+  c.usagePanel.style().set('shown', false);
+  c.icePlaceholder.style().set('shown', true);
+  c.icePanel.style().set('shown', true);
+  c.soonPanel.style().set('shown', true);
   
   // Clear map layers when switching to ice panel
-  Map.layers().reset();
+  Map.layers().reset();  // Simpler way to clear all layers
   Map.addLayer(m.krusensternLagoon, {color: "9CAB84"}, 'Krusenstern Lagoon');
 }
 
@@ -389,7 +452,12 @@ c.showGrayScaleCheck.onChange(function(checked) {
 /*******************************************************************************
  * Initialize *
  ******************************************************************************/
- 
-Map.add(c.panelLeft);
+
+Map.style().set({ cursor: 'crosshair' });
+
+Map.drawingTools().setShown(true);
+Map.setControlVisibility({zoomControl: true});
+
+c.buildUI();
 showNDCIPanel();
 Map.centerObject(m.krusensternLagoon, 11);
