@@ -1,4 +1,4 @@
-# Arctic Fisheries and Coastal Lagoons 
+# Arctic Fisheries and Coastal Lagoons
 
 [![Experience Builder](https://img.shields.io/badge/Experience_Builder-Visit-blue?logo=arcgis&logoColor=white)](https://experience.arcgis.com/experience/8ed468e285634b5f974ba3df4b8ee857/)
 [![Research Website](https://img.shields.io/badge/WCS_Research_Website-Visit-green?logo=googlescholar&logoColor=white)](https://leucichthys.org/home/chukchi-sea-coastal-lagoon-monitoring/)
@@ -6,6 +6,7 @@
 Geospatial analysis of Arctic coastal lagoons in Alaska using Python and Google Earth Engine (GEE) to monitor ecological changes such as algal blooms, ice coverage, connectivity, and seasonal variation.
 
 ## Project Overview
+
 Climate change is reshaping Alaska’s fragile ecosystems, with warming weather driving seasonal shifts that threaten coastal habitats. William & Mary's Institute for Integrative Conservation (IIC) has partnered with the The Wildlife Conservation Society (WCS), which leads the Chukchi Sea Coastal Lagoon Monitoring project, to help provide insights to support researchers, conservationists, and local communities.
 
 This project examines lagoons in the Chukchi and Beaufort Seas to determine ice coverage, lagoon connectivity, and algal growth. Using the collected data, an interactive ArcGIS Experience Builder application was created to assist conservation specialists and fishermen in monitoring habitat changes and spotting long-term patterns.
@@ -13,9 +14,10 @@ This project examines lagoons in the Chukchi and Beaufort Seas to determine ice 
 As of November 2025, the project is still producing interactive mapping tools and satellite-derived datasets that are vital resources for tracking the health of ecosystems and guiding conservation plans in Arctic lagoons. For more visit the [Experience Builder](https://experience.arcgis.com/experience/8ed468e285634b5f974ba3df4b8ee857/) Site, or WCS [Arctic Beringia Fish Ecology](https://leucichthys.org/) research site.
 
 ## Study Area
+
 ![Map of Arctic Coastal Lagoons](Maps/study_area_map.png)
 
-<sub>*Map created by Isabella Buckley William & Mary '25*</sub>
+<sub>_Map created by Isabella Buckley William & Mary '25_</sub>
 
 ## Meet the Team
 
@@ -70,3 +72,7 @@ As of November 2025, the project is still producing interactive mapping tools an
   <img src="https://img.shields.io/badge/ENVI-00A651?style=for-the-badge&logo=satellite&logoColor=white" alt="ENVI"/>
   <img src="https://img.shields.io/badge/GeoJSON-4EAA25?style=for-the-badge&logo=leaflet&logoColor=white" alt="GeoJSON"/>
 </p>
+
+## License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
