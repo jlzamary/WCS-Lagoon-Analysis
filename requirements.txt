@@ -1,4 +1,4 @@
-# WCS Lagoon Analysis 
+# WCS Lagoon Analysis Library Imports
 # Install with: pip install -r requirements.txt
 
 # Google Earth Engine
@@ -17,4 +17,3 @@ seaborn>=0.13.0
 # Statistical Analysis
 scipy>=1.11.0
 jenkspy>=0.4.1
-
