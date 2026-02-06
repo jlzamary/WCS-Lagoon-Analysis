@@ -11,7 +11,25 @@ Climate change is reshaping Alaska’s fragile ecosystems, with warming weather 
 
 This project examines lagoons in the Chukchi and Beaufort Seas to determine ice coverage, lagoon connectivity, and algal growth. Using the collected data, an interactive ArcGIS Experience Builder application was created to assist conservation specialists and fishermen in monitoring habitat changes and spotting long-term patterns.
 
-As of November 2025, the project is still producing interactive mapping tools and satellite-derived datasets that are vital resources for tracking the health of ecosystems and guiding conservation plans in Arctic lagoons. For more visit the [Experience Builder](https://experience.arcgis.com/experience/8ed468e285634b5f974ba3df4b8ee857/) Site, or WCS [Arctic Beringia Fish Ecology](https://leucichthys.org/) research site.
+As of January 2026, the project is still producing interactive mapping tools and satellite-derived datasets that are vital resources for tracking the health of ecosystems and guiding conservation plans in Arctic lagoons. For more visit the [Experience Builder](https://experience.arcgis.com/experience/8ed468e285634b5f974ba3df4b8ee857/) Site, or WCS [Arctic Beringia Fish Ecology](https://leucichthys.org/) research site.
+
+## A General Guide to What's Here
+
+**Important files and their location:**
+
+- The latest [notebook](Notebooks/Current/krusenstern_analysis_sp26.ipynb) has the complete workflow with basic visualization, validation datasets, and graphs to display the data. Check out the [requirements file](requirements.txt) to see what libraries are needed.
+
+- Field collection data can be found in the [field collections folder](Data/field_collection/). These samples were collected starting in the summer of 2017 in various lagoon locations and were validated alongside Sentinel-2 Imagery.
+
+- To access documentation and deliverables view the [deliverables folder](/Deliverables/).
+
+**The archive:**
+
+- The [archive](Notebooks/Archive/) folders holds all previous jupyter notebook files that were used in the past. This research has been ongoing for over four academic semesters (around 2 years) and older files can be found there.
+
+**GEE Online:**
+
+- Some basic data collection was done on the Google Earth Engine online editor in JavaScript. A current Earth Engine web-app is also under development and the code for those files can be found in the [GEE Online folder](/GEE-Online/).
 
 ## Study Area
 
