@@ -1,0 +1,27 @@
+name: Update Last Updated Badge
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get formatted date
+        id: date
+        run: echo "date=$(date +'%B_%Y')" >> $GITHUB_OUTPUT
+
+      - name: Update README badge
+        run: |
+          sed -i 's|https://img.shields.io/badge/Last_Updated-[^)]*|https://img.shields.io/badge/Last_Updated-${{ steps.date.outputs.date }}-blue?logo=github\&logoColor=white|g' README.md
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git diff --staged --quiet || git commit -m "Update last updated badge"
+          git push
