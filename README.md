@@ -62,7 +62,7 @@ As of March 2026, the project is still producing interactive mapping tools and s
       William & Mary '26
       <br />
     </td>
-        <td align="center" width="25%">
+      <td align="center" width="25%">
       <img src="readme_files/allison.jpg" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Allison Stup"/>
       <br />
       <b>Allison Stup</b>
@@ -81,11 +81,12 @@ As of March 2026, the project is still producing interactive mapping tools and s
   </tr>
 </table>
 
-### Principle Investigators & Faculty Advisors
+### Principle Investigator & Faculty Advisor
 
 <table>
   <tr>
     <td align="center" width="25%">
+      <h3>Principle Investigator</h3>
       <img src="readme_files/kevin_img.png" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Kevin Fraley"/>
       <br />
       <b>Dr. Kevin Fraley</b>
@@ -94,6 +95,7 @@ As of March 2026, the project is still producing interactive mapping tools and s
       <br />
     </td>
       <td align="center" width="25%">
+      <h3>Faculty Advisor</h3>
       <img src="readme_files/rob_rose.jpg" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Robert Rose"/>
       <br />
       <b>Dr. Robert Rose</b>
