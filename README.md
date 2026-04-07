@@ -42,6 +42,8 @@ As of March 2026, the project is still producing interactive mapping tools and s
 
 <div align="center">
 
+### Student Researchers
+
 <table>
   <tr>
     <td align="center" width="25%">
@@ -60,6 +62,14 @@ As of March 2026, the project is still producing interactive mapping tools and s
       William & Mary '26
       <br />
     </td>
+        <td align="center" width="25%">
+      <img src="readme_files/allison.jpg" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Allison Stup"/>
+      <br />
+      <b>Allison Stup</b>
+      <br />
+      William & Mary '26
+      <br />
+    </td>
     <td align="center" width="25%">
       <img src="readme_files/jack_img.jpg" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Jack Zamary"/>
       <br />
@@ -68,12 +78,27 @@ As of March 2026, the project is still producing interactive mapping tools and s
       William & Mary '27
       <br />
     </td>
+  </tr>
+</table>
+
+### Principle Investigators & Faculty Advisors
+
+<table>
+  <tr>
     <td align="center" width="25%">
       <img src="readme_files/kevin_img.png" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Kevin Fraley"/>
       <br />
-      <b>Kevin Fraley</b>
+      <b>Dr. Kevin Fraley</b>
       <br />
-      WCS Ecologist
+      Wildlife Conservation Society Fisheries Ecologist
+      <br />
+    </td>
+      <td align="center" width="25%">
+      <img src="readme_files/rob_rose.jpg" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Robert Rose"/>
+      <br />
+      <b>Dr. Robert Rose</b>
+      <br />
+      Executive Director, Institute for Integrative Conservation at William & Mary 
       <br />
     </td>
   </tr>
