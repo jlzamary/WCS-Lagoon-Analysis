@@ -87,11 +87,12 @@ As of March 2026, the project is still producing interactive mapping tools and s
   <tr>
     <td align="center" width="25%">
       <h3>Principle Investigator</h3>
-      <img src="readme_files/kevin_img.png" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Kevin Fraley"/>
+      <img src="readme_files/kevin.jpg" width="150" height="150" style="border-radius: 0px; object-fit: cover;" alt="Kevin Fraley"/>
       <br />
       <b>Dr. Kevin Fraley</b>
       <br />
-      Wildlife Conservation Society Fisheries Ecologist
+      Fisheries Ecologist, Arctic Beringia Program 
+      Wildlife Conservation Society
       <br />
     </td>
       <td align="center" width="25%">
