@@ -36,7 +36,7 @@ As of March 2026, the project is still producing interactive mapping tools and s
 
 ![Map of Arctic Coastal Lagoons](Maps/study_area_map.png)
 
-<sub>_Map created by Isabella Buckley William & Mary '25_</sub>
+<sub>_Map Courtesy of the Wildlife Conservation Society_</sub>
 
 ## Meet the Team
 
