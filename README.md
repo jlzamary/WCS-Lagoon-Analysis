@@ -34,7 +34,7 @@ As of March 2026, the project is still producing interactive mapping tools and s
 
 ## Study Area
 
-![Map of Arctic Coastal Lagoons](Maps/study_area_map.png)
+![Map of Arctic Coastal Lagoons](Maps/study_area_map_01.png)
 
 <sub>_Map Courtesy of the Wildlife Conservation Society_</sub>
 
