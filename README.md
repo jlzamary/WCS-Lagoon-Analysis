@@ -8,11 +8,11 @@ Geospatial analysis of Arctic coastal lagoons in Alaska using Python and Google 
 
 ## Project Overview
 
-Climate change is reshaping Alaska’s fragile ecosystems, with warming weather driving seasonal shifts that threaten coastal habitats. William & Mary's Institute for Integrative Conservation (IIC) has partnered with the The Wildlife Conservation Society (WCS), which leads the Chukchi Sea Coastal Lagoon Monitoring project, to help provide insights to support researchers, conservationists, and local communities.
+Climate change is reshaping Alaska’s ecosystems, with warming weather driving seasonal shifts that threaten coastal habitats. William & Mary's Institute for Integrative Conservation (IIC) has partnered with the The Wildlife Conservation Society (WCS) to help provide insights to support researchers, conservationists, and local communities.
 
-This project examines lagoons in the Chukchi and Beaufort Seas to determine ice coverage, lagoon connectivity, and algal growth. Using the collected data, an interactive ArcGIS Experience Builder application was created to assist conservation specialists and fishermen in monitoring habitat changes and spotting long-term patterns.
+This project examines lagoons in the Chukchi and Beaufort Seas to determine ice coverage, lagoon connectivity, and algal blooms. Using the collected data, an interactive ArcGIS Experience Builder application was created to assist conservation specialists and fishermen in monitoring habitat changes and spotting long-term patterns.
 
-As of March 2026, the project is still producing interactive mapping tools and satellite-derived datasets that are vital resources for tracking the health of ecosystems and guiding conservation plans in Arctic lagoons. For more visit the [Experience Builder](https://experience.arcgis.com/experience/8ed468e285634b5f974ba3df4b8ee857/) Site, or WCS [Arctic Beringia Fish Ecology](https://leucichthys.org/) research site.
+This project aims to produce interactive mapping tools and satellite-derived datasets that are vital resources for tracking the health of ecosystems and guiding conservation related decisions. For more visit the [Experience Builder](https://experience.arcgis.com/experience/8ed468e285634b5f974ba3df4b8ee857/) Site, or WCS [Arctic Beringia Fish Ecology](https://leucichthys.org/) research site.
 
 ## A General Guide to What's Here
 
