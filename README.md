@@ -123,3 +123,7 @@ This project aims to produce interactive mapping tools and satellite-derived dat
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+This repository is maintained by Jack Zamary. For general inquiries or more information, please contact Jack at [jlzamary@wm.edu](jlzamary@wm.edu). For specific questions regarding the WCS project, you can contact the project's Principal Investigator, [Dr. Kevin Fraley](https://leucichthys.org/).
