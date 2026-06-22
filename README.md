@@ -91,7 +91,7 @@ This project aims to produce interactive mapping tools and satellite-derived dat
       <br />
       <b>Dr. Kevin Fraley</b>
       <br />
-      Fisheries Ecologist, Arctic Beringia Program 
+      Fisheries Ecologist, Arctic Beringia Program, 
       Wildlife Conservation Society
       <br />
     </td>
