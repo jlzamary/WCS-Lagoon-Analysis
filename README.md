@@ -1,6 +1,6 @@
 # Arctic Fisheries and Coastal Lagoons
 
-[![Last Updated](https://img.shields.io/badge/Last_Updated-May_2026-blue?logo=github&logoColor=white)](https://github.com/YOUR_USERNAME/YOUR_REPO)
+[![Last Updated](https://img.shields.io/badge/Last_Updated-June_2026-blue?logo=github&logoColor=white)](https://github.com/YOUR_USERNAME/YOUR_REPO)
 [![Experience Builder](https://img.shields.io/badge/Experience_Builder-Visit-blue?logo=arcgis&logoColor=white)](https://experience.arcgis.com/experience/8ed468e285634b5f974ba3df4b8ee857/)
 [![Research Website](https://img.shields.io/badge/WCS_Research_Website-Visit-green?logo=googlescholar&logoColor=white)](https://leucichthys.org/home/chukchi-sea-coastal-lagoon-monitoring/)
 
@@ -91,7 +91,7 @@ This project aims to produce interactive mapping tools and satellite-derived dat
       <br />
       <b>Dr. Kevin Fraley</b>
       <br />
-      Fisheries Ecologist, Arctic Beringia Program 
+      Fisheries Ecologist, Arctic Beringia Program, 
       Wildlife Conservation Society
       <br />
     </td>
