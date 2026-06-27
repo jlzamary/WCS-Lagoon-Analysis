@@ -6,6 +6,9 @@
 
 Geospatial analysis of Arctic coastal lagoons in Alaska using Python and Google Earth Engine (GEE) to monitor ecological changes such as algal blooms, ice coverage, connectivity, and seasonal variation.
 
+## Latest Update
+As of June 2026, an [article](https://leucichthys.org/2026/06/22/tracking-algal-blooms-at-krusenstern-lagoon/) has been published on the WCS Arctic Beringia webpage highlighting some initial findings related to algal bloom development in Krusenstern Lagoon, located in Cape Krusenstern National Monument, Alaska. Additionally, a group of William & Mary students and faculty will be traveling to the Society for Conservation GIS conference later this summer to present their findings during one of the panels.
+
 ## Project Overview
 
 Climate change is reshaping Alaska’s ecosystems, with warming weather driving seasonal shifts that threaten coastal habitats. William & Mary's Institute for Integrative Conservation (IIC) has partnered with the The Wildlife Conservation Society (WCS) to help provide insights to support researchers, conservationists, and local communities.
@@ -13,9 +16,6 @@ Climate change is reshaping Alaska’s ecosystems, with warming weather driving 
 This project examines lagoons in the Chukchi and Beaufort Seas to determine ice coverage, lagoon connectivity, and algal blooms. Using the collected data, an interactive ArcGIS Experience Builder application was created to assist conservation specialists and fishermen in monitoring habitat changes and spotting long-term patterns.
 
 This project aims to produce interactive mapping tools and satellite-derived datasets that are vital resources for tracking the health of ecosystems and guiding conservation related decisions. For more visit the [Experience Builder](https://experience.arcgis.com/experience/8ed468e285634b5f974ba3df4b8ee857/) Site, or WCS [Arctic Beringia Fish Ecology](https://leucichthys.org/) research site.
-
-## Latest Update
-As of June 2026, an [article](https://leucichthys.org/2026/06/22/tracking-algal-blooms-at-krusenstern-lagoon/) has been published on the WCS Arctic Beringia webpage highlighting some initial findings related to algal bloom development in Krusenstern Lagoon, located in Cape Krusenstern National Monument, Alaska. Additionally, a group of William & Mary students and faculty will be traveling to the Society for Conservation GIS conference later this summer to present their findings during one of the panels.
 
 ## A General Guide to What's Here
 
