@@ -1,3 +1,7 @@
+![banner](readme_files/WCS-Lagoon-Analysis-banner.png)
+
+---
+
 # Arctic Fisheries and Coastal Lagoons
 
 [![Last Updated](https://img.shields.io/badge/Last_Updated-June_2026-blue?logo=github&logoColor=white)](https://github.com/YOUR_USERNAME/YOUR_REPO)
